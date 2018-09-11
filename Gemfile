@@ -31,6 +31,11 @@ gem 'jbuilder', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#crear información en seeds.rb
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master', require: false
+
+gem 'wdm'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -3,15 +3,24 @@
     <div class="col-md-3">
       <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Purchase</a>
-        <a href="#" class="list-group-item">Withdrawal</a>
-        <!-- more transaction types -->
+
+        <!-- Start: listar tipos -->
+        <% @types.each do |type| %>
+        <a href="#" class="list-group-item"><%=type.name%></a>
+        <% end %>  
+        <!-- End: listar tipos -->
+      
       </div>
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Restaurants</a>
-        <a href="#" class="list-group-item">Car</a>
+        
+        <!-- Start: listar categorias -->
+        <% @categories.each do |category| %>
+        <a href="#" class="list-group-item"><%=category.name%></a>
+        <% end %>
+        <!-- End: listar categorias -->
+
         <!-- more categories  -->
       </div>
     </div>
@@ -33,7 +42,15 @@
 
       <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
-          <a href="#" class="btn btn-success pull-left"><span class="glyphicon glyphicon-plus"></span> New Expense</a>
+        
+        <!-- Start: botón del modal -->
+          <%= link_to new_expense_path, remote: true, class: "btn btn-success pull-left" do %>
+          <span class="glyphicon glyphicon-plus"></span> New Expense
+          <% end %>
+        <!-- End: botón del modal -->
+
+          <!-- <a href="#" class="btn btn-success pull-left"><span class="glyphicon glyphicon-plus"></span> New Expense</a> -->
+
           <h4 class="dropdown pull-right">
             <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
@@ -55,27 +72,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="date">
-              <div class="day">24</div>
-              <div class="month">Apr</div>
-            </td>
-            <td>
-              <div>
-                <span class="type">Purchase</span>
-              </div>
-              <div>
-                <span class="concept">Example concept</span>
-              </div>
-            </td>
-            <td class="category text-right">Restauratns</td>
-            <td class="text-right" style="width: 170px;">
-              <div class="amount">$1,000,000</div>
-              <div class="actions">
-                <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                <a href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-            </td>
-          </tr>
+        <!-- Start: listar gastos -->
+        <% @expenses.each do |expense| %>
+
+        <%= render "row", expense: expense %> 
+         
+        <% end %>
+        <!-- End: listar gastos -->
         </tbody>
       </table>
     </div>

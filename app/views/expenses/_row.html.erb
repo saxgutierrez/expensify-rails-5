@@ -1,0 +1,30 @@
+<!-- Start: listar gastos -->  
+  <tr>
+    <td class="date">
+      <div class="day"><%=l(expense.date, format: "%d")%></div>
+      <div class="month"><%=l(expense.date, format: "%b")%></div>
+    </td>
+    <td>
+      <div>
+        <span class="type"><%=expense.type.name%></span>
+      </div>
+      <div>
+        <span class="concept"><%=expense.concept%></span>
+      </div>
+    </td>
+    <td class="category text-right"><%=expense.category.name%></td>
+    <td class="text-right" style="width: 170px;">
+      <div class="amount"><%=expense.amount%></div>
+      <div class="actions">
+
+      	<%= link_to edit_expense_path(expense), remote: true, class: "" do %>
+      	<span class="glyphicon glyphicon-edit"></span>Edit
+      	<% end %>
+       
+        <%= link_to expense_path(expense),method: :delete, data: { confirm: "¿Estás seguro de eliminar este Expense?" }, remote: true, class: "" do %>
+        <span class="glyphicon glyphicon-trash"></span>Delete
+        <% end %>
+    </td>
+  </tr>    
+<!-- End: listar gastos -->
+
