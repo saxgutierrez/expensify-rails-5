@@ -44,9 +44,17 @@
         <div class="col-md-12">
         
         <!-- Start: botón del modal -->
-          <%= link_to new_expense_path, remote: true, class: "btn btn-success pull-left" do %>
+          <%= link_to  new_expense_path, :class => "btn btn-success pull-left", :remote => true, "data-toggle" => "modal", "data-target" => "expense-modal" do %>
           <span class="glyphicon glyphicon-plus"></span> New Expense
           <% end %>
+<%
+=begin %>
+          <%= link_to new_expense_path, remote: true, class: "btn btn-success pull-left" do %>
+          <span class="glyphicon glyphicon-plus"></span> New Expense 
+          <% end %>
+<%
+=end %>
+
         <!-- End: botón del modal -->
 
           <!-- <a href="#" class="btn btn-success pull-left"><span class="glyphicon glyphicon-plus"></span> New Expense</a> -->
@@ -76,7 +84,7 @@
         <% @expenses.each do |expense| %>
 
         <%= render "row", expense: expense %> 
-         
+
         <% end %>
         <!-- End: listar gastos -->
         </tbody>
