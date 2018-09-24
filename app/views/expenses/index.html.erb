@@ -1,28 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
-      <div class="list-group filter-type">
 
-        <!-- Start: listar tipos -->
-        <% @types.each do |type| %>
-        <a href="#" class="list-group-item"><%=type.name%></a>
+   
+
+      <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
+      
+      <div class="list-group filter-type">
+        <!-- Start: listar tipos y filtrar -->
+        <% @types.each do |type| %>      
+            <%= link_to expenses_path(:type_id => type.id), class: "list-group-item" do %>
+              <%=type.name%>
+            <% end %>
         <% end %>  
         <!-- End: listar tipos -->
-      
       </div>
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">
-        
-        <!-- Start: listar categorias -->
+        <!-- Start: listar categorias y filtrar -->
         <% @categories.each do |category| %>
-        <a href="#" class="list-group-item"><%=category.name%></a>
+            <%= link_to expenses_path(:category_id => category.id), class: "list-group-item" do %>
+              <%=category.name%>
+            <% end %>
         <% end %>
         <!-- End: listar categorias -->
-
         <!-- more categories  -->
       </div>
+
+    
+
     </div>
     <div class="col-md-9 index-data">
       <div class="row" style="margin-top: 10px;">
@@ -47,6 +54,7 @@
           <%= link_to  new_expense_path, :class => "btn btn-success pull-left", :remote => true, "data-toggle" => "modal", "data-target" => "expense-modal" do %>
           <span class="glyphicon glyphicon-plus"></span> New Expense
           <% end %>
+        <!-- End: botón del modal -->
 <%
 =begin %>
           <%= link_to new_expense_path, remote: true, class: "btn btn-success pull-left" do %>
@@ -54,12 +62,14 @@
           <% end %>
 <%
 =end %>
-
-        <!-- End: botón del modal -->
-
           <!-- <a href="#" class="btn btn-success pull-left"><span class="glyphicon glyphicon-plus"></span> New Expense</a> -->
-
+          
           <h4 class="dropdown pull-right">
+            <% @expenses.each do |expense| %>
+              
+            <% end %>
+
+
             <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
               <li role="presentation"><a href="#">April 2016</a></li>
@@ -67,6 +77,7 @@
               <!-- more months -->
             </ul>
           </h4>
+
         </div>
       </div>
 

@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4><!-- este title viene de las vistas js.erb -->
       </div>
-      <%= form_for @expense, remote: true do |f| %>
+      <%= form_for @expense, url:{action: form_controller}, remote: true do |f| %>
         <div class="modal-body row">
           <div class="alert alert-danger" role="alert" style="display: none;"></div>
           
@@ -16,7 +16,7 @@
 
           <div class="form-group col-md-6">
             <label for="">Date</label>
-            
+            <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d'), class: "form-control" %>
           </div>
 
           <div class="form-group col-md-12">
@@ -32,24 +32,12 @@
           <div class="form-group col-md-6"">
             <label for="">Precio del producto</label>
             <%= f.text_field :amount, class: "form-control", placeholder: "" %>
-          </div>
-
-<%
-=begin %>
-          <div class="form-group">
-            <%= f.select(Category.all, :category_id, :name) %>
-          </div>
-
-          <div class="form-group">
-            <%= f.select(Type.all, :type_id, :name) %>
-          </div>
-<%
-=end %>          
+          </div>         
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <%= f.submit class: "btn btn-primary" %>
+          <%= f.submit form_button, class: "btn btn-primary" %>
         </div>
       <% end %>
     </div><!-- /.modal-content -->
