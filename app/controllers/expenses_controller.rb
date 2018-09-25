@@ -18,6 +18,8 @@ class ExpensesController < ApplicationController
          @expenses = @expenses.where("category_id = ?", params[:category_id]).where("type_id = ?", params[:type_id]) #busca el id
        end
    
+
+
   end
 
   def new
@@ -49,7 +51,7 @@ class ExpensesController < ApplicationController
 
   def update
   @expense = Expense.find(params[:id])
-   	if @expense.update(post_params)
+   	if @expense.update(expense_params)
    		redirect_to expenses_path, notice: "Expense modificado exitosamente"
    	else
    		render :edit

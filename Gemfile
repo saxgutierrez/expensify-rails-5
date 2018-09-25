@@ -36,6 +36,12 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master',
 
 gem 'wdm'
 
+#gema para manipular tiempos
+gem 'groupdate'
+
+#gema para gráficas
+gem "chartkick"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
