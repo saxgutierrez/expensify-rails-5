@@ -5,21 +5,13 @@ class ExpensesController < ApplicationController
    @types = Type.all
    @expenses = Expense.all
 
-       
-       if params[:type_id].present?
-         @expenses = @expenses.where("type_id = ?", params[:type_id]) #busca el id
-       end
-
-       if params[:category_id].present?
-         @expenses = @expenses.where("category_id = ?", params[:category_id]) #busca el id
-       end
-
        if params[:category_id].present? && params[:type_id].present?
          @expenses = @expenses.where("category_id = ?", params[:category_id]).where("type_id = ?", params[:type_id]) #busca el id
+       elsif params[:type_id].present?
+         @expenses = @expenses.where("type_id = ?", params[:type_id]) #busca el id
+       elsif params[:category_id].present?
+         @expenses = @expenses.where("category_id = ?", params[:category_id]) #busca el id
        end
-   
-
-
   end
 
   def new

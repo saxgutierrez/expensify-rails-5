@@ -17,7 +17,6 @@
       <span>MES PASADO</span>
     </div>
   </div>
-
   <div class="row" style="margin-top: 40px;">
     <div class="box col-md-6">
       <div class="panel panel-default">
@@ -38,7 +37,6 @@
       </div>
     </div>
   </div>
-
   <div class="row" style="margin-top: 10px;">
     <div class="box col-md-6">
       <div class="panel panel-default">
@@ -52,7 +50,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">Acumulado</div>
         <div class="panel-body">
-          <div id="month-acc" style="height: 250px;"><%= area_chart @expenses.group_by_month(:date,range: 1.months.ago.midnight..Time.now).maximum(:amount) %></div>
+          <div id="month-acc" style="height: 250px;"><%= area_chart @expenses.group_by_month(:date,range: 1.months.ago.midnight..Time.now).sum(:amount) %>
+            
+          </div>
         </div>
       </div>
     </div>

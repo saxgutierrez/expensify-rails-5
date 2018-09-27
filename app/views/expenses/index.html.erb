@@ -6,12 +6,11 @@
 
       <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
       
-      <div class="list-group filter-type">
+      <div class="list-group checked-list-box">
         <!-- Start: listar tipos y filtrar -->
-        <% @types.each do |type| %>      
-            <%= link_to expenses_path(:type_id => type.id), class: "list-group-item" do %>
-              <%=type.name%>
-            <% end %>
+        <% @types.each do |type| %>  
+        <p modelid = "<%=type.id %>" model = "type" class="list-group-item"><%=type.name%> </p>  
+          
         <% end %>  
         <!-- End: listar tipos -->
       </div>
@@ -20,12 +19,9 @@
       <div class="list-group filter-type">
         <!-- Start: listar categorias y filtrar -->
         <% @categories.each do |category| %>
-            <%= link_to expenses_path(:category_id => category.id), class: "list-group-item" do %>
-              <%=category.name%>
-            <% end %>
+        <p modelid = "<%=category.id %>" model = "category" class="list-group-item"><%=category.name%> </p>      
         <% end %>
         <!-- End: listar categorias -->
-        <!-- more categories  -->
       </div>
 
     
@@ -62,7 +58,6 @@
           <% end %>
 <%
 =end %>
-          <!-- <a href="#" class="btn btn-success pull-left"><span class="glyphicon glyphicon-plus"></span> New Expense</a> -->
           
           <h4 class="dropdown pull-right">
             <% @expenses.each do |expense| %>
@@ -103,3 +98,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  new x();
+</script>
