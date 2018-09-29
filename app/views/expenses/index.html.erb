@@ -9,8 +9,14 @@
       <div class="list-group checked-list-box">
         <!-- Start: listar tipos y filtrar -->
         <% @types.each do |type| %>  
-        <p modelid = "<%=type.id %>" model = "type" class="list-group-item"><%=type.name%> </p>  
-          
+<%
+=begin %>
+        <%= link_to filter_expenses("type",type.id), class: "list-group-item", model:"type", id:type.id do %>
+        <%=type.name%>   
+        <% end %>
+<%
+=end %>
+        <a modelid = "<%=type.id %>" model = "type" class="list-group-item"><%=type.name%> </a>   
         <% end %>  
         <!-- End: listar tipos -->
       </div>
@@ -19,26 +25,30 @@
       <div class="list-group filter-type">
         <!-- Start: listar categorias y filtrar -->
         <% @categories.each do |category| %>
-        <p modelid = "<%=category.id %>" model = "category" class="list-group-item"><%=category.name%> </p>      
+<%
+=begin %>
+        <%= link_to filter_expenses("category",category.id), class: "list-group-item", model:"category", id:category.id do %>
+        <%=category.name%>   
+        <% end %>
+<%
+=end %>
+        <a modelid = "<%=category.id %>" model = "category" class="list-group-item"><%=category.name%> </a>      
         <% end %>
         <!-- End: listar categorias -->
       </div>
-
-    
-
     </div>
     <div class="col-md-9 index-data">
       <div class="row" style="margin-top: 10px;">
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$2,500,000</div>
+        <div class="summary-box col-md-4 text-center" >
+          <div class="summary-value xxx"><%= number_to_currency(@total) %></div>
           <div class="summary-label">Total</div>
         </diV>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">2</div>
+        <div class="summary-box col-md-4 text-center" >
+          <div class="summary-value xxx"><%= @expenses.size %></div>
           <div class="summary-label">Transactions</div>
         </div>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$1,000,000</div>
+        <div class="summary-box col-md-4 text-center" >
+          <div class="summary-value xxx"><%= number_to_currency(@average) %></div>
           <div class="summary-label">Average</div>
         </div>
       </div>
@@ -47,9 +57,7 @@
         <div class="col-md-12">
         
         <!-- Start: botón del modal -->
-          <%= link_to  new_expense_path, :class => "btn btn-success pull-left", :remote => true, "data-toggle" => "modal", "data-target" => "expense-modal" do %>
-          <span class="glyphicon glyphicon-plus"></span> New Expense
-          <% end %>
+          <%= link_to '<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Expense'.html_safe, new_expense_path, class: "btn btn-success pull-left", remote: true  %>
         <!-- End: botón del modal -->
 <%
 =begin %>
@@ -60,17 +68,18 @@
 =end %>
           
           <h4 class="dropdown pull-right">
-            <% @expenses.each do |expense| %>
-              
+            <%= form_tag expenses_path, method: :get do %>
+              <%= select_tag :date, options_for_select(months_list, params[:date]), {:onchange => 'this.form.submit()', class:"dropdown-toggle btn btn-success" } %>
+              <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
+              <%= hidden_field_tag :category, params[:category_id] if params[:category_id].present? %>
+              <%= hidden_field_tag :type, params[:type_id] if params[:type_id].present? %>
             <% end %>
 
-
-            <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
+            <!-- <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
               <li role="presentation"><a href="#">April 2016</a></li>
               <li role="presentation"><a href="#">March 2016</a></li>
-              <!-- more months -->
-            </ul>
+            </ul> -->
           </h4>
 
         </div>

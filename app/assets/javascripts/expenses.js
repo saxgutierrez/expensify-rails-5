@@ -1,4 +1,6 @@
+// funcion para filtrar por dos parametros type y category
 function x(){
+
 	$(".list-group-item").click(function(){
 
 		model = $(this).attr("model");
@@ -14,6 +16,7 @@ function x(){
 		type = localStorage.getItem('type');
 		category = localStorage.getItem('category');
 
+
 		if(type!=null && category!=null){
 			window.location="/expenses?category_id="+category+"&type_id="+type;
 		}else if(type!=null){
@@ -23,6 +26,9 @@ function x(){
 		{
 			window.location="/expenses?category_id="+category;
 		}
-		//console.log(type,category);
+		// console.log(type,category);
 	});
 }
+
+
+	

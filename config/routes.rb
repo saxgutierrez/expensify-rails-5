@@ -7,4 +7,11 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :expenses, only: [:index, :create, :update, :destroy]
+    end
+  end
+  
 end
