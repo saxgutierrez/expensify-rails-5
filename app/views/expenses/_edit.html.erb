@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4><!-- este title viene de las vistas js.erb -->
       </div>
-      <%= form_for @expense, url:{action: form_controller}, remote: true do |f| %>
+      <%= form_for @expense, url:{action: "update"}, remote: true do |f| %>
         <div class="modal-body row">
           <div class="alert alert-danger" role="alert" style="display: none;"></div>
           
