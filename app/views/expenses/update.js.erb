@@ -1,8 +1,9 @@
 <% if @expense.errors.empty? %>
   // add the row to the table, show alert and hide modal
-  $('table tbody tr#<%= @expense.id %>').replaceWith(' <%= j render "row", expense: @expense %>');
+  $('table tbody tr#<%= @expense.id %>').replaceWit(' <%= j render "row", expense: @expense %>');
   $('.alert-success').html("Expense modificado con éxito").show();
   $('#expense-modal').modal('hide');
+  $('.alert-success').append('<button id="" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>').show();
 <% else %>
   // show first error
   alert('<%= @expense.errors.full_messages[0] %>');

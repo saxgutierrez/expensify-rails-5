@@ -35,16 +35,11 @@ class ExpensesController < ApplicationController
   end
 
   def show
-  @expense = Expense.find(params[:id])
+
   end
 
   def create
-  @expense = Expense.new(expense_params)
-	if @expense.save
-		redirect_to expenses_path, notice: "Expense creado con éxito"
-	else
-		render :new
-	end
+  @expense = Expense.create(expense_params)
   end
 
   def edit
@@ -54,16 +49,16 @@ class ExpensesController < ApplicationController
   def destroy
   @expense = Expense.find(params[:id])
   @expense.destroy
-  redirect_to expenses_path, notice: "Expense eliminado con éxito"
   end
 
   def update
   @expense = Expense.find(params[:id])
-   	if @expense.update(expense_params)
-   		redirect_to expenses_path, notice: "Expense modificado exitosamente"
-   	else
-   		render :edit
-   	end
+  @expense.update(expense_params)
+   	# if @expense.update(expense_params)
+   	# 	redirect_to expenses_path, notice: "Expense modificado exitosamente"
+   	# else
+   	# 	render :edit
+   	# end
   end
 
    protected
