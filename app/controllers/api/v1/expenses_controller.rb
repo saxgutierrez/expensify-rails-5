@@ -1,7 +1,7 @@
 module Api
   module V1
     class ExpensesController < ApplicationController
-     
+     protect_from_forgery with: :null_session
 
       def index
         @expenses = Expense.all
